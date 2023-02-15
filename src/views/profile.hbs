@@ -1,0 +1,20 @@
+<h2>
+Bienvenido {{user.first_name}} {{user.last_name}}!
+</h2>
+
+<ul>
+    <li>{{user.email}}</li>
+    <li>{{user.age}}</li>
+    <li>{{user.role}}</li>
+</ul>
+
+{{#if user.isAdmin }}
+<h3>{{user.first_name}}, tenes permisos de administrador.</h3>
+{{else}}
+<h3>
+<h3>{{user.first_name}}, no tenes permisos de administrador.</h3>
+</h3>
+{{/if}}
+
+
+<button><a href="/session/logout">Cerrar Sesion</a></button>
