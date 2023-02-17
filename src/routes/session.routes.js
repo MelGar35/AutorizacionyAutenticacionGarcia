@@ -14,9 +14,16 @@ router.post('/login', passport.authenticate("login", {failureRedirect: "/failLog
     last_name: req.user.last_name,
     email: req.user.email,
     age:req.user.age,
-    role: req.user.role
+    email : req.user.email
   }
-  res.status(200).redirect("/profile")
+  res.render('profile', {user:req.session.user})
+})
+
+router.get('/github', passport.authenticate('github', {scope: ['user:email'] }))
+
+router.get('/githubcallback', passport.authenticate('github', {failureRedirect:'/login'}), async (req,res) => {
+  req.session.user = req.user; 
+  res.redirect('/profile')
 })
 
 router.get("/failLogin", (req,res)=>{
@@ -27,8 +34,9 @@ router.post('/register', passport.authenticate("register", {failureRedirect:"/se
   return res.status(201).redirect("/login")
 })
 
-router.get('/register', passport.authenticate("register", {failureRedirect:"/session/failRegister"}), async (req, res) => {
-  return res.status(400).json({message:"Fail Register"})
+router.get('/failregister', (req,res) => {
+  console.log("Ha ocurrido un problema en la registracion")
+  res.send({status:'failure', message:"Ha ocurrido un problema en la registracion"})
 })
 
 router.post('/restore', async (req, res) => {

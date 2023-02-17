@@ -1,7 +1,7 @@
 
 Primero creamos las dependencias:
 
-npm init -y; npm i express express-session connect-mongo cookie-parser mongoose express-handlebars
+npm init -y; npm i express express-session connect-mongo cookie-parser mongoose express-handlebars express-session mongoose passport passport-github2
 
 Sistema de Login por Formulario.
 

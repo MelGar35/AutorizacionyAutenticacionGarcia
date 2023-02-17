@@ -19,7 +19,7 @@ router.get('/login', loggedIn, (req,res) => {
   })
   
 router.get('/', (req,res) => {
-    res.redirect('/login')
+    res.render('index')
   })
   
   

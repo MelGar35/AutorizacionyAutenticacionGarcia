@@ -2,7 +2,6 @@ import express from "express"
 import cookieParser from "cookie-parser"
 import mongoose from "mongoose"
 import session from "express-session"
-import {userModel} from "./models/users.models.js"
 import viewsRoutes from "./routes/views.routes.js"
 import sessionRoutes from "./routes/session.routes.js"
 import __dirname from "./utils.js"
@@ -21,7 +20,7 @@ app.use(cookieParser())
 app.use( 
     session({
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://Meli:Melisa537@noeserver.c5gx1p7.mongodb.net/Login?retryWrites=true&w=majority",
+        mongoUrl: "mongodb+srv://Meli:Melisa537@noeserver.c5gx1p7.mongodb.net/autenticacion?retryWrites=true&w=majority",
         mongoOptions:{
             useNewUrlParser: true,
             useUnifiedTopology:true,
@@ -34,15 +33,14 @@ app.use(
 })
 )
 
-
-mongoose.set("strictQuery", false)
-mongoose.connect("mongodb+srv://Meli:Melisa537@noeserver.c5gx1p7.mongodb.net/Login?retryWrites=true&w=majority")
-.then(()=> console.log("Connected to Mongo Atlas"))
-
 //Passport Config
 initializePassport()
 app.use(passport.initialize()) //inicializa passport
 app.use(passport.session()) //maneja sesiones de passport
+mongoose.set("strictQuery", false)
+mongoose.connect("mongodb+srv://Meli:Melisa537@noeserver.c5gx1p7.mongodb.net/autenticacion?retryWrites=true&w=majority")
+.then(()=> console.log("Connected to Mongo Atlas"))
+
 
 //Handlebars Config
 app.engine('hbs', handlebars.engine({
