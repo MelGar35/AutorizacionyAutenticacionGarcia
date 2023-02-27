@@ -7,14 +7,13 @@ const router = Router()
 
 router.post('/login', passport.authenticate("login", {failureRedirect: "/failLogin"}), async (req, res) => {
   if (!req.user) {
-    return res.status(404),json({mesagge : "User not founf"})
+    return res.status(404).send({mesagge : "User not found"})
   } 
   req.session.user ={
     first_name: req.user.first_name,
     last_name: req.user.last_name,
     email: req.user.email,
     age:req.user.age,
-    email : req.user.email
   }
   res.render('profile', {user:req.session.user})
 })

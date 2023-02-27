@@ -1,5 +1,5 @@
 <h2>
-Bienvenido {{user.first_name}} {{user.last_name}}!
+Bienvenido {{user.first_name}}!
 </h2>
 
 <ul>
@@ -7,12 +7,10 @@ Bienvenido {{user.first_name}} {{user.last_name}}!
     <li>{{user.age}}</li>
 </ul>
 
-{{#if user.isAdmin }}
-<h3>{{user.first_name}}, tenes permisos de administrador.</h3>
+{{#if user.isAdmin}}
+<h3>{{user.first_name}}, Tenes permisos de administrador!.</h3>
 {{else}}
-<h3>
-<h3>{{user.first_name}}, no tenes permisos de administrador.</h3>
-</h3>
+<h3>{{user.first_name}}, No tenes permisos de administrador.</h3>
 {{/if}}
 
 
